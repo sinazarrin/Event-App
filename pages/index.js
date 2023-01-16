@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({data}) {
   return (
     <>
       <Head>
@@ -24,36 +24,30 @@ export default function Home() {
         </nav>
       </header>
       <main className={styles.main}>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in London</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde culpa, fuga ab, optio voluptates accusamus porro corrupti excepturi aspernatur.
-          </p>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in los angeles</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde culpa, fuga ab, optio voluptates accusamus porro corrupti excepturi aspernatur.
-          </p>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in barcelona</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde culpa, fuga ab, optio voluptates accusamus porro corrupti excepturi aspernatur.
-          </p>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in azna</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde culpa, fuga ab, optio voluptates accusamus porro corrupti excepturi aspernatur.
-          </p>
-        </Link>
+        {data.map(ev => {
+          return(
+            <Link key={ev.id} href={`/events/${ev.id}`}>
+              <img width={200} height={'100%'} src={ev.image} alt={ev.title} />
+              <h2>{ev.title}</h2>
+              <p>
+                {ev.description}
+              </p>
+            </Link>
+          )
+        })}
       </main>
       <footer></footer>
     </>
   )
+}
+
+
+export const getServerSideProps = async () => {
+  const {events_categories} = await import('/data/data.json')
+
+  return {
+    props:{
+      data: events_categories,
+    }
+  }
 }

@@ -1,30 +1,31 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Page = () => {
+const EventsPage = ({data}) => {
+
   return (
     <>
       <h1>Events Page</h1>
       <div>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in London</h2>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in los angeles</h2>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in barcelona</h2>
-        </Link>
-        <Link href='#'>
-          <img src="#" alt="" />
-          <h2>Events in azna</h2>
-        </Link>
+        {data.map(ev => (
+          <Link key={ev.id} href={`/events/${ev.id}`}>
+            <img src={ev.image} alt={ev.title} width={300} height={300} />
+            <h2>{ev.title}</h2>
+          </Link>
+        ))}
       </div>
     </>
   )
 }
 
-export default Page
+export const getStaticProps = async() => {
+  const {events_categories} = await import('/data/data.json')
+
+  return {
+    props:{
+      data: events_categories
+    }
+  }
+}
+
+export default EventsPage
