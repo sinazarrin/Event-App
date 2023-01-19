@@ -3,12 +3,12 @@ import React from 'react'
 
 const EventPerCityPage = ({ showData, pageName }) => {
   return (
-    <>
+    <div className="cat_events">
       <h1>Event is {pageName}</h1>
-      <div>
+      <div className="content">
         {
           showData.map(ev => (
-            <Link key={ev.id} href={`/events/${ev.city}/${ev.id}`}>
+            <Link key={ev.id} href={`/events/${ev.city}/${ev.id}`} className="card">
               <img width={300} height={300} src={ev.image} alt="" />
               <h2>{ev.title}</h2>
               <p>{ev.description}</p>
@@ -16,7 +16,7 @@ const EventPerCityPage = ({ showData, pageName }) => {
           ))
         }
       </div>
-    </>
+    </div>
   )
 }
 

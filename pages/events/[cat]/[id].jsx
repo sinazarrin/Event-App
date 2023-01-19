@@ -2,11 +2,11 @@ import React from 'react'
 
 const EventPage = ({data}) => {
   return (
-    <>
-      <img src={data.image} width={500} height={300} alt="" />
+    <div className='event_single_page'>
       <h1>{data.title}</h1>
+      <img src={data.image} width={500} height={300} alt="" />
       <p>{data.description}</p>
-    </>
+    </div>
   )
 }
 

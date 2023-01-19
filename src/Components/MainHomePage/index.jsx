@@ -2,23 +2,21 @@ import Link from 'next/link'
 import React from 'react'
 
 
-const MainHomePage = ({data}) => {
+const MainHomePage = ({ data }) => {
   return (
-    <div>
-        <main >
-        {data.map(ev => {
-          return(
-            <Link key={ev.id} href={`/events/${ev.id}`}>
-              <img width={200} height={'100%'} src={ev.image} alt={ev.title} />
-              <h2>{ev.title}</h2>
-              <p>
-                {ev.description}
-              </p>
-            </Link>
-          )
-        })}
-      </main>
-    </div>
+    <div className="home_body">
+    {data?.map((ev) => (
+      <Link key={ev.id} href={`/events/${ev.id}`} className="card" passHref>
+          <div className="image">
+            <img width={400} height={400} alt={ev.title} src={ev.image} />
+          </div>
+          <div className="content">
+            <h2> {ev.title} </h2>
+            <p> {ev.description} </p>
+          </div>
+      </Link>
+    ))}
+  </div>
   )
 }
 
