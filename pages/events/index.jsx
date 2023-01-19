@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,7 +10,7 @@ const EventsPage = ({data}) => {
       <div className="events_page">
         {data.map(ev => (
           <Link key={ev.id} href={`/events/${ev.id}`} className="card">
-            <img src={ev.image} alt={ev.title} width={300} height={300} />
+            <Image src={"/" + ev.image} alt={ev.title} width={300} height={300} />
             <h2>{ev.title}</h2>
           </Link>
         ))}

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,7 +10,7 @@ const EventPerCityPage = ({ showData, pageName }) => {
         {
           showData.map(ev => (
             <Link key={ev.id} href={`/events/${ev.city}/${ev.id}`} className="card">
-              <img width={300} height={300} src={ev.image} alt="" />
+              <Image width={300} height={300} src={"/" + ev.image} alt="" />
               <h2>{ev.title}</h2>
               <p>{ev.description}</p>
             </Link>

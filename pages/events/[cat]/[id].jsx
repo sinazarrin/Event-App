@@ -1,10 +1,11 @@
+import Image from 'next/image'
 import React from 'react'
 
 const EventPage = ({data}) => {
   return (
     <div className='event_single_page'>
       <h1>{data.title}</h1>
-      <img src={data.image} width={500} height={300} alt="" />
+      <Image src={"/" + data.image} width={500} height={300} alt="" />
       <p>{data.description}</p>
     </div>
   )
