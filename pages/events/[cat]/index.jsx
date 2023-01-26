@@ -43,7 +43,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { allEvents } = await import('/data/data.json')
   const id = context?.params.cat
-
+  
   const showData = allEvents.filter(ev => ev.city === id)
   return {
     props: { showData, pageName: id }
